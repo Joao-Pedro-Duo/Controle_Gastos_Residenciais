@@ -1,0 +1,71 @@
+@Backend_HostAddress = http://localhost:5237
+
+### Listar pessoas
+
+GET {{Backend_HostAddress}}/api/pessoas
+Accept: application/json
+
+### Cadastrar pessoa
+
+POST {{Backend_HostAddress}}/api/pessoas
+Content-Type: application/json
+
+{
+  "nome": "Edney",
+  "idade": 22
+}
+
+### Testar nome vazio
+
+POST {{Backend_HostAddress}}/api/pessoas
+Content-Type: application/json
+
+{
+  "nome": "",
+  "idade": 22
+}
+
+### Testar idade negativa
+
+POST {{Backend_HostAddress}}/api/pessoas
+Content-Type: application/json
+
+{
+  "nome": "Teste",
+  "idade": -5
+}
+
+### Excluir pessoa
+
+DELETE {{Backend_HostAddress}}/api/pessoas/11
+
+
+
+### Listar transações
+
+GET {{Backend_HostAddress}}/api/transacoes
+Accept: application/json
+
+### Cadastrar uma receita
+
+POST {{Backend_HostAddress}}/api/transacoes
+Content-Type: application/json
+
+{
+  "descricao": "Salário",
+  "valor": 2500.00,
+  "tipo": 0,
+  "pessoaId": 12
+}
+
+### Cadastrar uma despesa
+
+POST {{Backend_HostAddress}}/api/transacoes
+Content-Type: application/json
+
+{
+  "descricao": "Mercado",
+  "valor": 300.00,
+  "tipo": 1,
+  "pessoaId": 12
+}
