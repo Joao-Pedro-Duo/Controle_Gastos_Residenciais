@@ -69,3 +69,14 @@ Content-Type: application/json
   "tipo": 1,
   "pessoaId": 12
 }
+
+
+### Listar totais 
+
+GET {{Backend_HostAddress}}/api/totais
+
+
+### Consultar totais
+
+GET {{Backend_HostAddress}}/api/totais
+Accept: application/json
