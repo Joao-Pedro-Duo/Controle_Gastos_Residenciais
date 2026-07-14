@@ -53,6 +53,5 @@ public class TransacoesController : ControllerBase
         _context.SaveChanges();
 
         return Created($"/api/transacoes/{transacao.Id}", transacao);
-
     }
 }
