@@ -36,6 +36,12 @@ public class TransacoesController : ControllerBase
             return BadRequest("O valor da transação deve ser maior que zero.");
         }
 
+        if (!Enum.IsDefined(typeof(TipoTransacao), transacao.Tipo))
+        {
+            return BadRequest(
+            "O tipo da transação deve ser Receita ou Despesa.");
+        }
+
         var pessoa = _context.Pessoas.Find(transacao.PessoaId);
 
         if (pessoa == null)

@@ -80,3 +80,16 @@ GET {{Backend_HostAddress}}/api/totais
 
 GET {{Backend_HostAddress}}/api/totais
 Accept: application/json
+
+
+### Testar tipo de transação inválido
+
+POST {{Backend_HostAddress}}/api/transacoes
+Content-Type: application/json
+
+{
+  "descricao": "Transação inválida",
+  "valor": 200,
+  "tipo": 50,
+  "pessoaId": 1
+}
