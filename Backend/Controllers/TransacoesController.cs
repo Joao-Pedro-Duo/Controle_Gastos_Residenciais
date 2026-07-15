@@ -1,6 +1,8 @@
 using Backend.Data;
+using Backend.DTOs;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers;
 
@@ -16,47 +18,55 @@ public class TransacoesController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult ListarTransacoes()
+    public async Task<IActionResult> ListarTransacoes()
     {
-        var transacoes = _context.Transacoes.ToList();
+        var transacoes = await _context.Transacoes.ToListAsync();
 
         return Ok(transacoes);
     }
 
     [HttpPost]
-    public IActionResult CadastrarTransacao(Transacao transacao)
+    public async Task<IActionResult> CadastrarTransacao(CriarTransacaoDto dto)
     {
-        if (string.IsNullOrWhiteSpace(transacao.Descricao))
+        if (string.IsNullOrWhiteSpace(dto.Descricao))
         {
             return BadRequest("A descrição da transação é obrigatória.");
         }
 
-        if (transacao.Valor <= 0)
+        if (dto.Valor <= 0)
         {
             return BadRequest("O valor da transação deve ser maior que zero.");
         }
 
-        if (!Enum.IsDefined(typeof(TipoTransacao), transacao.Tipo))
+        if (!Enum.IsDefined(typeof(TipoTransacao), dto.Tipo))
         {
             return BadRequest(
             "O tipo da transação deve ser Receita ou Despesa.");
         }
 
-        var pessoa = _context.Pessoas.Find(transacao.PessoaId);
+        var pessoa = await _context.Pessoas.FindAsync(dto.PessoaId);
 
         if (pessoa == null)
         {
             return BadRequest("A pessoa informada não existe.");
         }
 
-        if (pessoa.Idade < 18 && transacao.Tipo == TipoTransacao.Receita)
+        if (pessoa.Idade < 18 && dto.Tipo == TipoTransacao.Receita)
         {
             return BadRequest("Pessoas menores de 18 anos só podem cadastrar despesas.");
         }
 
+        var transacao = new Transacao
+        {
+            Descricao = dto.Descricao,
+            Valor = dto.Valor,
+            Tipo = dto.Tipo,
+            PessoaId = dto.PessoaId
+        };
+
         _context.Transacoes.Add(transacao);
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         return Created($"/api/transacoes/{transacao.Id}", transacao);
     }

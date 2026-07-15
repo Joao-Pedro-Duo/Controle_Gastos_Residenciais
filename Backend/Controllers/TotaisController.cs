@@ -18,11 +18,11 @@ public class TotaisController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult ConsultarTotais()
+    public async Task<IActionResult> ConsultarTotais()
     {
-        var pessoas = _context.Pessoas
+        var pessoas = await _context.Pessoas
             .Include(p => p.Transacoes)
-            .ToList();
+            .ToListAsync();
 
         var totaisPorPessoa = pessoas.Select(pessoa =>
         {

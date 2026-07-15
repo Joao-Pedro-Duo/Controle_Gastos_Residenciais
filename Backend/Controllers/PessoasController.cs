@@ -1,6 +1,8 @@
 using Backend.Data;
+using Backend.DTOs;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers;
 
@@ -16,37 +18,43 @@ public class PessoasController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult ListarPessoas()
+    public async Task<IActionResult> ListarPessoas()
     {
-        var pessoas = _context.Pessoas.ToList();
+        var pessoas = await _context.Pessoas.ToListAsync();
 
         return Ok(pessoas);
     }
 
     [HttpPost]
-    public IActionResult CadastrarPessoa(Pessoa pessoa)
+    public async Task<IActionResult> CadastrarPessoa(CriarPessoaDto dto)
     {
-        if (string.IsNullOrWhiteSpace(pessoa.Nome))
+        if (string.IsNullOrWhiteSpace(dto.Nome))
         {
         return BadRequest("O nome da pessoa é obrigatório.");
         }
 
-        if (pessoa.Idade < 0)
+        if (dto.Idade < 0)
         {
         return BadRequest("A idade não pode ser negativa.");
         }
 
+        var pessoa = new Pessoa
+        {
+            Nome = dto.Nome,
+            Idade = dto.Idade
+        };
+
         _context.Pessoas.Add(pessoa);
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         return Created($"/api/pessoas/{pessoa.Id}", pessoa);
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeletarPessoa(int id)
+    public async Task<IActionResult> DeletarPessoa(int id)
     {
-        var pessoa = _context.Pessoas.Find(id);
+        var pessoa = await _context.Pessoas.FindAsync(id);
 
         if (pessoa == null)
         {
@@ -55,7 +63,7 @@ public class PessoasController : ControllerBase
 
         _context.Pessoas.Remove(pessoa);
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         return NoContent();
     }
