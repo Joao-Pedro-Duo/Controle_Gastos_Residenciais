@@ -389,25 +389,6 @@ Atualizar o banco:
 dotnet ef database update
 ```
 
-## Testes realizados
-
-Foram testados os seguintes cenários:
-
-- Cadastro e listagem de pessoas;
-- Exclusão de pessoas;
-- Exclusão em cascata das transações;
-- Cadastro de receita para pessoa adulta;
-- Cadastro de despesa para pessoa adulta;
-- Cadastro de despesa para menor de idade;
-- Bloqueio de receita para menor de idade;
-- Bloqueio de valores inválidos;
-- Bloqueio de pessoa inexistente;
-- Cálculo de receitas, despesas e saldos;
-- Atualização automática da interface sem recarregar a página;
-- Responsividade em telas menores;
-- Compilação do backend;
-- Build e lint do frontend.
-
 ## Uso de inteligência artificial
 
 Ferramentas de inteligência artificial foram utilizadas como apoio para esclarecimento de dúvidas técnicas, revisão de código e estudo de boas práticas.
