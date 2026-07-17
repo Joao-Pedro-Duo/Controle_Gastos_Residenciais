@@ -55,7 +55,7 @@ Content-Type: application/json
   "descricao": "Salário",
   "valor": 2500.00,
   "tipo": 0,
-  "pessoaId": 12
+  "pessoaId": 1
 }
 
 ### Cadastrar uma despesa
@@ -67,7 +67,7 @@ Content-Type: application/json
   "descricao": "Mercado",
   "valor": 300.00,
   "tipo": 1,
-  "pessoaId": 12
+  "pessoaId": 1
 }
 
 

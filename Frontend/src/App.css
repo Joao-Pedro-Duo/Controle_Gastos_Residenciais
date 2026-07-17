@@ -1,0 +1,248 @@
+#root {
+  min-height: 100vh;
+}
+
+.container {
+  width: min(1100px, 90%);
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.titulo {
+  margin-bottom: 8px;
+}
+
+.subtitulo {
+  color: #64748b;
+}
+
+.secao {
+  margin-top: 32px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgb(15 23 42 / 8%);
+}
+
+.secao h2 {
+  margin-bottom: 20px;
+}
+
+.lista-pessoas {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+}
+
+.pessoa-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.pessoa-item span {
+  color: #64748b;
+}
+
+.formulario {
+  display: grid;
+  gap: 16px;
+}
+
+.campo {
+  display: grid;
+  gap: 6px;
+}
+
+.campo label {
+  font-weight: 600;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background-color: white;
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: #2563eb;
+}
+
+.formulario button {
+  width: fit-content;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.formulario button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.mensagem-sucesso {
+  margin-top: 16px;
+  color: #15803d;
+}
+
+.mensagem-erro {
+  margin-top: 16px;
+  color: #b91c1c;
+}
+
+.pessoa-dados {
+  display: grid;
+  gap: 4px;
+}
+
+.botao-excluir {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #dc2626;
+  color: white;
+  cursor: pointer;
+}
+
+.botao-excluir:hover {
+  background-color: #b91c1c;
+}
+
+.botao-excluir:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.lista-transacoes {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+}
+
+.transacao-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.transacao-informacoes,
+.transacao-valores {
+  display: grid;
+  gap: 4px;
+}
+
+.transacao-valores {
+  justify-items: end;
+  text-align: right;
+}
+
+.transacao-informacoes span {
+  color: #64748b;
+}
+
+.tipo-receita {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.tipo-despesa {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.cards-totais {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.card-total {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.card-total span {
+  color: #64748b;
+}
+
+.card-total strong {
+  font-size: 1.4rem;
+}
+
+.valor-receita {
+  color: #15803d;
+}
+
+.valor-despesa {
+  color: #b91c1c;
+}
+
+.titulo-totais-pessoa {
+  margin-top: 28px;
+  margin-bottom: 16px;
+}
+
+.lista-totais-pessoa {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+}
+
+.total-pessoa-item {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.total-pessoa-valores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.mensagem-global {
+  margin-top: 16px;
+}
+
+@media (max-width: 600px) {
+  .transacao-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .transacao-valores {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .cards-totais {
+    grid-template-columns: 1fr;
+  }
+
+  .total-pessoa-valores {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+}
+
